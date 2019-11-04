@@ -28,22 +28,28 @@ public class NoticeService {
 		if(method.equals("POST")) {
 			try {
 				Connection con = DBConnector.getConnection();
+				NoticeDTO noticeDTO = new NoticeDTO();
+				noticeDTO.setTitle(request.getParameter("title"));
+				noticeDTO.setWriter(request.getParameter("writer"));
+				noticeDTO.setContents(request.getParameter("contents"));
+				
 				int result = noticeDAO.noticeWrite(con, noticeDTO);
+			
 				con.close();
-				
-				
+
+
 				String message = "Write Fail";
 				if(result>0) {
 					message = "Write";
 				}else {
-				
+
 				}
 				request.setAttribute("msg", message);
 				request.setAttribute("path", "./noticeList.notice");
 				RequestDispatcher view = request.getRequestDispatcher("../common/common_result.jsp");
 				view.forward(request, response);
 
-				
+
 			}catch (Exception e) {
 				// TODO: handle exception
 			}
