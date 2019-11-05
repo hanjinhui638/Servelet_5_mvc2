@@ -54,7 +54,7 @@ public class NoticeController extends HttpServlet {
 		
 		
 		/* boolean -> is */
-		if(actionFoward.isFlag()) {
+		if(actionFoward.isFlag()) {9+
 			RequestDispatcher view = request.getRequestDispatcher(actionFoward.getPath());
 			view.forward(request, response);
 			
